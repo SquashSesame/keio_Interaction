@@ -6,6 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Tips/RotateWithCompass/RotateWithCompass.unity
+    path: Assets/Tips/Fader/TestFader.unity
+    guid: c4b98a877039b4ad3813b023bdc0d4f5
+  - enabled: 1
+    path: Assets/Tips/Select/TestSelect.unity
+    guid: 211e49c9f52ca6f43917a76feac249ea
+  - enabled: 1
+    path: Assets/Tips/Message/TestMessage.unity
+    guid: 79df06e890fe7614db25147372420d52
+  - enabled: 1
+    path: Assets/Tips/Message/TestMessage_2.unity
+    guid: 97eb37f0ce9def24c9b7f905d8bf0760
+  - enabled: 1
+    path: Assets/Tips/GridSnap/GridSnap.unity
+    guid: e3ba5baa58c944640817fce876054a92
+  - enabled: 1
+    path: Assets/Tips/GridSnap/GridSnap2.unity
+    guid: 4e879a1faf15d4790a5a86e0e9e955c8
+  - enabled: 1
+    path: Assets/Tips/Acceleration/TestAcceleration.unity
+    guid: 6e8f985dd190a4808bee6a3b415cf97f
+  - enabled: 1
+    path: Assets/Tips/RotateWithCompass/TestRotateWithCompass.unity
     guid: a9f747e72ddea4cdebb39e010b41a785
   m_configObjects: {}

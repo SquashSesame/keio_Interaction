@@ -56,20 +56,9 @@ public class Fader : SingletonDontDestroy<Fader>
 
     #region 時間とともにフェードイン・アウトを行う
 
-    // コルーチン用：フェードインの処理
-    public IEnumerator YieldFadeIn(float fadeTime = 1.0f)
-    {
-        yield return YieldUpdateFade(1.0f, 0.0f,fadeTime);
-    }
-
-    // コルーチン用：フェードアウトの処理
-    public IEnumerator YieldFadeOut(float fadeTime = 1.0f)
-    {
-        yield return YieldUpdateFade(0.0f, 1.0f, fadeTime);
-    }
-
     // コルーチン用：stVal ー＞ edVal まで fadeTime 時間かけてフェードさせる
-    public IEnumerator YieldUpdateFade(float stVal, float edVal, float fadeTime)
+    public IEnumerator YieldUpdateFade(
+        float stVal, float edVal, float fadeTime, System.Action endOfFade = null)
     {
         is_end = false;
         if (fadeTime > 0.0f)
@@ -86,6 +75,12 @@ public class Fader : SingletonDontDestroy<Fader>
         }
         UpdateFade(edVal);
         is_end = true;
+
+        // フェード終了を通知する
+        if (endOfFade != null){
+            endOfFade.Invoke();
+        }
+
         yield return null;
     }
 
@@ -100,17 +95,19 @@ public class Fader : SingletonDontDestroy<Fader>
     /// <summary>
     /// Static関数：フェードイン
     /// </summary>
-    static public Coroutine FadeIn(float fadeTime = 1.0f)
+    static public Coroutine FadeIn(float fadeTime = 1.0f, System.Action endOfFade = null)
     {
-        return Instance.StartCoroutine(Instance.YieldFadeIn(fadeTime));
+        return Instance.StartCoroutine(
+            Instance.YieldUpdateFade(1.0f, 0.0f,fadeTime, endOfFade));
     }
 
     /// <summary>
     /// Static関数：フェードアウト
     /// </summary>
-    static public Coroutine FadeOut(float fadeTime = 1.0f)
+    static public Coroutine FadeOut(float fadeTime = 1.0f, System.Action endOfFade = null)
     {
-        return Instance.StartCoroutine(Instance.YieldFadeOut(fadeTime));
+        return Instance.StartCoroutine(
+            Instance.YieldUpdateFade(0.0f, 1.0f, fadeTime, endOfFade));
     }
 
     #endregion
@@ -120,11 +117,11 @@ public class Fader : SingletonDontDestroy<Fader>
     // コルーチン用：フェードイン・アウトを挟んで次のシーンへ
     public IEnumerator YieldSwitchScene(string sceneName, float fadeTime = 1.0f)
     {
-        yield return YieldFadeOut(fadeTime);
+        yield return YieldUpdateFade(0.0f, 1.0f, fadeTime);
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
 
-        yield return YieldFadeIn(fadeTime);
+        yield return YieldUpdateFade(1.0f, 0.0f,fadeTime);
     }
 
     /// <summary>

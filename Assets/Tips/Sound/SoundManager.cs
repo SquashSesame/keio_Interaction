@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 namespace Sound {
     public class SoundManager : MonoBehaviour {
-        [SerializeField] AudioSource musicSource;
-        [SerializeField] AudioSource jingleSource;
-        [SerializeField] AudioSource [] seSources;
+        [SerializeField] AudioSource musicSource = null;
+        [SerializeField] AudioSource jingleSource = null;
+        [SerializeField] AudioSource [] seSources = null;
 
         static SoundManager s_instance = null;
 
@@ -15,9 +15,9 @@ namespace Sound {
             get { return s_instance; }
         }
 
-        [SerializeField] private AudioClip [] bgmList;
-        [SerializeField] private AudioClip [] jingleList;
-        [SerializeField] private AudioClip [] seList;
+        [SerializeField] private AudioClip [] bgmList = null;
+        [SerializeField] private AudioClip [] jingleList = null;
+        [SerializeField] private AudioClip [] seList = null;
 
         double fadeTime = 1.0;
         double fadeDeltaTime = 0;
