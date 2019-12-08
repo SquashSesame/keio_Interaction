@@ -12,10 +12,14 @@ public class TestFader : MonoBehaviour
     void Start()
     {
         btnFadeStart.onClick.AddListener(()=>{
-            // ボタンが押されたら、フェードアウト
+            // ボタンが押されたら、フェードアウト　ー＞　フェードイン
             Fader.FadeOut(1.0f, ()=>{
+                Debug.Log("フェードアウト終了");
                 // フェードアウトが終了したら、フェードイン
-                Fader.FadeIn();
+                Fader.FadeIn(1.0f, ()=>{
+                    // フェードインが終了
+                    Debug.Log("フェードイン終了");
+                });
             });
         });
 
