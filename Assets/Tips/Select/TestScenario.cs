@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class TestScenario : MonoBehaviour {
 
-    public MessageController messageCtrl;
+    public MessageController2 messageCtrl;
     public SelectController selectCtrl;
-    public SpriteRenderer backGround;
 
 
 	// Use this for initialization
@@ -48,10 +47,6 @@ public class TestScenario : MonoBehaviour {
                 break;
         }
 
-        yield return ImageFade(backGround, Fade.Out);
-
-        yield return ImageFade(backGround, Fade.In);
-
         yield return WaitMessage(
             "はい！終了です！！\n\n");
 
@@ -84,49 +79,6 @@ public class TestScenario : MonoBehaviour {
 
         // 選択肢クローズ
         selectCtrl.Close();
-        yield return null;
-    }
-
-    public enum Fade {
-        In,
-        Out,
-    }
-    public IEnumerator ImageFade(SpriteRenderer sprite, Fade type, float fadeTime=0.5f)
-    {
-        float stVal, edVal;
-        Color col;
-        if (type == Fade.In)
-        {
-            stVal = 0.0f;
-            edVal = 1.0f;
-        }
-        else
-        {
-            stVal = 1.0f;
-            edVal = 0.0f;
-        }
-
-        if (fadeTime > 0.0f)
-        {
-            // 段階的に反映
-            float time = 0.0f;
-            while (time < fadeTime)
-            {
-                // フェード中のアルファ値を計算
-                float val = Mathf.Lerp(stVal, edVal, time / fadeTime);
-                // フェード中の値を設定
-                col = sprite.color;
-                col.a = val;
-                sprite.color = col;
-                // 時間を計算
-                time += Time.deltaTime;
-                yield return null;
-            }
-        }
-        // 最終的な値は設定
-        col = sprite.color;
-        col.a = edVal;
-        sprite.color = col;
         yield return null;
     }
 
