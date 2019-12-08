@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mPlayer2 : MonoBehaviour
+public class GridSnap2 : MonoBehaviour
 {
     public float SnapRange = 1.0f;
 

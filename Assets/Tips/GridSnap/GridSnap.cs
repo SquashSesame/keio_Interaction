@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mPlayer : MonoBehaviour
+public class GridSnap : MonoBehaviour
 {
     public GameObject BasePoint;
     public GameObject FirstPoint;
