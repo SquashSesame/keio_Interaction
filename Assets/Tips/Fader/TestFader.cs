@@ -12,6 +12,10 @@ public class TestFader : MonoBehaviour
     void Start()
     {
         btnFadeStart.onClick.AddListener(()=>{
+
+            // フェードカラーを指定
+            Fader.SetFadeColor(Color.black);
+
             // ボタンが押されたら、フェードアウト　ー＞　フェードイン
             Fader.FadeOut(1.0f, ()=>{
                 Debug.Log("フェードアウト終了");
@@ -28,5 +32,12 @@ public class TestFader : MonoBehaviour
             // ボタンが押されたら、フェードアウトして、次のシーンへ切り替える
             Fader.SwitchScene(NextScene);
         });
+    }
+
+    void Update() 
+    {
+        if (Fader.IsEnd){
+            // IsEnd プロパティでも終了判定ができます。
+        }
     }
 }

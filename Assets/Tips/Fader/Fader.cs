@@ -42,14 +42,14 @@ public class Fader : SingletonDontDestroy<Fader>
     }
 
     // フェードレベルを設定
-    public void SetFadeLevel(float level) {
-        UpdateFade(level);
+    static public void SetFadeLevel(float level) {
+        Instance.UpdateFade(level);
     }
 
     // フェードカラーを設定（ホワイト／ブラックなど）
-    public void SetFadeColor(Color color) {
-        fadeImage.color = color;
-        UpdateFade(fadeLevel);
+    static public void SetFadeColor(Color color) {
+        Instance.fadeImage.color = color;
+        Instance.UpdateFade(Instance.fadeLevel);
     }
 
     #endregion
