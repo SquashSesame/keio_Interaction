@@ -8,31 +8,26 @@ public class RotateWithCompass : MonoBehaviour {
     Quaternion curCorrection = Quaternion.identity;
     Quaternion aimCorrection = Quaternion.identity;
 
-    static Vector3 compassRawVector {
-        get {
-            Vector3 ret = Input.compass.rawVector;
-            if (Application.platform == RuntimePlatform.Android) 
-            {
-                /*
-                 *  Androidでは、rawVectorの軸を変換
-                 */
-                switch (Screen.orientation) {
-                    case ScreenOrientation.LandscapeLeft:
-                        ret = new Vector3 (-ret.y, ret.x, ret.z);
-                        break;
+    static Vector3 GetCompassRawVector() {
+        Vector3 ret = Input.compass.rawVector;
+        if (Application.platform == RuntimePlatform.Android) 
+        {
+            // Androidでは、rawVectorの軸を変換
+            switch (Screen.orientation) {
+                case ScreenOrientation.LandscapeLeft:
+                    ret = new Vector3 (-ret.y, ret.x, ret.z);
+                    break;
 
-                    case ScreenOrientation.LandscapeRight:
-                        ret = new Vector3 (ret.y, -ret.x, ret.z);
-                        break;
+                case ScreenOrientation.LandscapeRight:
+                    ret = new Vector3 (ret.y, -ret.x, ret.z);
+                    break;
 
-                    case ScreenOrientation.PortraitUpsideDown:
-                        ret = new Vector3 (-ret.x, -ret.y, ret.z);
-                        break;
-                }
+                case ScreenOrientation.PortraitUpsideDown:
+                    ret = new Vector3 (-ret.x, -ret.y, ret.z);
+                    break;
             }
-
-            return ret;
         }
+        return ret;
     }
 
     void Start ()
@@ -50,15 +45,15 @@ public class RotateWithCompass : MonoBehaviour {
         if (Input.compass.timestamp > old_CompassTime) {
             old_CompassTime = Input.compass.timestamp;
 
-            Vector3 campassV = compassRawVector;
-            Vector3 gravity = Input.gyro.gravity.normalized;
-            Vector3 northV = campassV - Vector3.Dot (gravity, campassV) * gravity;
+            Vector3 campassV = GetCompassRawVector();
+            Vector3 gravityV = Input.gyro.gravity.normalized;
+            Vector3 northV = campassV - Vector3.Dot (gravityV, campassV) * gravityV;
 
-            Quaternion corientation = changeAxis (
-                Quaternion.Inverse (Quaternion.LookRotation (northV, -gravity)));
+            Quaternion corientation = 
+                changeAxis (Quaternion.Inverse (Quaternion.LookRotation (northV, -gravityV)));
 
             Quaternion tcorrection = 
-                corientation * Quaternion.Inverse (gorientation) *　Quaternion.Euler (0, 0, 180);
+                corientation * Quaternion.Inverse (gorientation) *　Quaternion.Euler (0, 0, 0);
 
             if (!isNaN (tcorrection)) {
                 aimCorrection = tcorrection;
@@ -76,7 +71,8 @@ public class RotateWithCompass : MonoBehaviour {
 
     static Quaternion changeAxis (Quaternion q)
     {
-        return new Quaternion (q.x, q.y, q.z, q.w);
+        var euler = q.eulerAngles;
+        return Quaternion.Euler(-euler.x, -euler.y, euler.z);
     }
 
     static bool isNaN (Quaternion q)

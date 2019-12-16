@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: atlas_kami
+  m_Name: kami_Atlas
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -30,16 +30,16 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
-    - {fileID: 21300000, guid: 06127ab3c266c44bfb699023bfc7ae45, type: 3}
-    - {fileID: 21300000, guid: d177e85a27b934e708824282212b5aa3, type: 3}
-    - {fileID: 21300000, guid: 8e261aedc95694a1b9c9608ab149b8fe, type: 3}
-    - {fileID: 21300000, guid: efb0783bbf48b49c7b415842cd75dfff, type: 3}
-    - {fileID: 21300000, guid: c732a07c0f81543ef860261820914ec8, type: 3}
+    - {fileID: 2800000, guid: 06127ab3c266c44bfb699023bfc7ae45, type: 3}
+    - {fileID: 2800000, guid: d177e85a27b934e708824282212b5aa3, type: 3}
+    - {fileID: 2800000, guid: 8e261aedc95694a1b9c9608ab149b8fe, type: 3}
+    - {fileID: 2800000, guid: efb0783bbf48b49c7b415842cd75dfff, type: 3}
+    - {fileID: 2800000, guid: c732a07c0f81543ef860261820914ec8, type: 3}
     totalSpriteSurfaceArea: 37825
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: fb2e62aefdc49dde334d959abcf6cdd6
+      Hash: 00000000000000000000000000000000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 06127ab3c266c44bfb699023bfc7ae45, type: 3}
@@ -53,5 +53,5 @@ SpriteAtlas:
   - kami_4
   - kami_5
   - kami_3
-  m_Tag: atlas_kami
+  m_Tag: kami_Atlas
   m_IsVariant: 0
