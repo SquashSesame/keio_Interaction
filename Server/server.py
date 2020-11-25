@@ -7,14 +7,18 @@ def hello_world():
     return 'Ready Server!'
 
 @app.route("/log", methods=["POST"])
-def log_post():
-    data = request.form['area']
-    return  "POST :" + data
+def post_log():
+    data = request.form['data']
+    print("POST : " + data)
+    return "OK"
+
 
 @app.route("/log", methods=["GET"])
-def log_get():
-    area = request.args.get("area")
-    return "GET : " + area
+def get_log():
+    data = request.args.get("data")
+    print("GET : " + data)
+    return "OK"
+
 
 if __name__ == '__main__':
     app.debug = True
