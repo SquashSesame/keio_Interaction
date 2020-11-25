@@ -9,12 +9,12 @@ def hello_world():
 @app.route("/log", methods=["POST"])
 def log_post():
     data = request.form['area']
-    return  "Ranking POST area=" + data
+    return  "POST :" + data
 
 @app.route("/log", methods=["GET"])
 def log_get():
     area = request.args.get("area")
-    return "Ranking GET area=" + area
+    return "GET : " + area
 
 if __name__ == '__main__':
     app.debug = True

@@ -68,7 +68,9 @@ public class UDPReceiver : MonoBehaviour
         }
     }
 
-    // 通信スレッド
+    /// <summary>
+    /// 通信スレッド
+    /// </summary>
     void ReceiveMain()
     {
         IPEndPoint remoteEP = null;
@@ -86,7 +88,7 @@ public class UDPReceiver : MonoBehaviour
 
             // 受信データを取得
             try {
-                // パケットデータを取得して、キューに積む（細かい処理はメインスレッドでやる）
+                // パケットデータを取得して、キューに積むだけ（細かい処理はメインスレッドでやる）
                 var packet = Bytes2Packet(receiveBytes);
                 packetQueue.Enqueue(packet);
                 Debug.Log("RECEIVE : " + packet.objName );
@@ -98,6 +100,9 @@ public class UDPReceiver : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// バイト配列 ー＞ 構造体へ変換
+    /// </summary>
     sPacket Bytes2Packet(byte[] bytes)
     {
         /*
