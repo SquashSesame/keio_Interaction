@@ -7,6 +7,9 @@
 [Vv]env/
 Assets/AssetStoreTools*
 
+#Python
+__pycache__/
+
 # Visual Studio cache directory
 .vs/
 .vscode/
